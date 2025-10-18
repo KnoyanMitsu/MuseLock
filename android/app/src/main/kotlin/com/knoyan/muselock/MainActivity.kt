@@ -1,4 +1,4 @@
-package com.example.dasar
+package com.knoyan.muselock
 
 import io.flutter.embedding.android.FlutterActivity
 
