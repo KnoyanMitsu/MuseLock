@@ -47,12 +47,22 @@ class TimePickerPainter extends CustomPainter {
       ..style = PaintingStyle.stroke // Ganti ke stroke
       ..strokeWidth = 6 // Atur ketebalan jarum
       ..strokeCap = StrokeCap.round; // Buat ujungnya bulat
+    final paintHandEndFill = Paint()
+      ..color = Colors.redAccent
+      ..style = PaintingStyle.fill // Ganti ke stroke
+      ..strokeWidth = 6 // Atur ketebalan jarum
+      ..strokeCap = StrokeCap.round; 
 
     final paintHandStart = Paint()
       ..color = Colors.tealAccent
       ..style = PaintingStyle.stroke // Ganti ke stroke
       ..strokeWidth = 6 // Atur ketebalan jarum
       ..strokeCap = StrokeCap.round; // Buat ujungnya bulat
+    final paintHandStartFill = Paint()
+      ..color = Colors.tealAccent
+      ..style = PaintingStyle.fill // Ganti ke stroke
+      ..strokeWidth = 6 // Atur ketebalan jarum
+      ..strokeCap = StrokeCap.round;
 
     // HAPUS: paintSelectorStroke tidak diperlukan lagi
     // final paintSelectorStroke = Paint()
@@ -99,7 +109,14 @@ class TimePickerPainter extends CustomPainter {
     
     // Gambar jarum SELESAI (merah)
     canvas.drawLine(center, selectorPosEnd, paintHandEnd);
-
+    // 4. Gambar penanda
+    // Gambar penanda SELESAI (merah) terlebih dahulu
+    canvas.drawCircle(selectorPosEnd, 20, paintHandEndFill);
+    canvas.drawCircle(selectorPosEnd, 20, paintHandEndFill);
+    
+    // Gambar penanda MULAI (teal) di atasnya (jika tumpang tindih)
+    canvas.drawCircle(selectorPosStart, 20, paintHandStartFill);
+    canvas.drawCircle(selectorPosStart, 20, paintHandStartFill);
     // Gambar jarum MULAI (teal)
     canvas.drawLine(center, selectorPosStart, paintHandStart);
 

@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dasar/controller/formatHour.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:root_plus/root_plus.dart';
 
@@ -20,8 +21,8 @@ async {
 
   final jsonString = await file.readAsString();
   final data = jsonDecode(jsonString);
-  final startParts = _formatHour(data['startTime']).split(":");
-  final endParts = _formatHour(data['endTime']).split(":");
+  final startParts = formatHour(data['startTime']).split(":");
+  final endParts = formatHour(data['endTime']).split(":");
 
   final bool airplane = data['airplane'];
   final bool silence = data['silence'];
@@ -82,10 +83,3 @@ Future<void>morning(bool airplane,bool silence) async{
   }
 }
 
-String _formatHour(double hour) {
-  final int hours = hour.floor();
-  final int minutes = ((hour - hours) * 60).round();
-  final String hourStr = hours.toString().padLeft(2, '0');
-  final String minStr = minutes.toString().padLeft(2, '0');
-  return '$hourStr:$minStr';
-}

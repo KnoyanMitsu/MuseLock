@@ -1,6 +1,7 @@
 import 'package:dasar/Layout/Widget/ClockPicker/Layout/circularTimePicker.dart';
 import 'package:dasar/controller/sleepSave.dart';
 import 'package:flutter/material.dart';
+import 'package:dasar/controller/formatHour.dart';
 
 class SleepMode extends StatefulWidget {
   const SleepMode({super.key});
@@ -115,9 +116,9 @@ class _SleepModeState extends State<SleepMode> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _hourStats('Start',_formatHour(_hourStart)),
+                _hourStats('Start',formatHour(_hourStart)),
                 SizedBox(width: 30,),
-                _hourStats('End',_formatHour(_hourEnd))
+                _hourStats('End',formatHour(_hourEnd))
               ],
             ),
             SizedBox(height: 20,),
@@ -143,12 +144,5 @@ class _SleepModeState extends State<SleepMode> {
         ),
       )
     );
-  }
-  String _formatHour(double hour) {
-    final int hours = hour.floor();
-    final int minutes = ((hour - hours) * 60).round();
-    final String hourStr = hours.toString().padLeft(2, '0');
-    final String minStr = minutes.toString().padLeft(2, '0');
-    return '$hourStr:$minStr';
   }
 }
