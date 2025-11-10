@@ -1,6 +1,6 @@
+import 'package:dasar/Layout/sleepMode.dart';
 import 'package:dasar/Layout/Widget/button.dart';
 import 'package:dasar/Layout/Widget/clock.dart';
-import 'package:dasar/Layout/applist.dart';
 import 'package:dasar/Layout/disable_time_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +13,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-    void _openListApp(BuildContext context){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => AppList(title: "List to Disable",),));
+    void _openSleepMode(BuildContext context){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => SleepMode(),));
     }
     void _openDisableTime(BuildContext context){
       Navigator.push(context, MaterialPageRoute(builder:  (context) => DisableTimeLayout()));
@@ -34,28 +34,26 @@ class _HomeState extends State<Home> {
             const Clock(),
             const SizedBox(height: 40),
             Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 20),
-  child: Column(
-    children: [
-
-        Button(
-          height: 80,
-          name: "Disable apps with time (Rooted)",
-          nav: () => {_openDisableTime(context)},
-          icon: Icons.lock_clock,
-          shadow: 0.4,
-        ),
-
-      const SizedBox(height: 10),
-        Button(
-          name: "Disable apps with as",
-          nav: () => _openListApp(context),
-          icon: Icons.disabled_by_default,
-          shadow: 0.4,
-        ),
-    ],
-  ),
-)
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                    Button(
+                      height: 80,
+                      name: "Disable apps with time (root)",
+                      nav: () => {_openDisableTime(context)},
+                      icon: Icons.lock_clock,
+                      shadow: 0.4,
+                    ),
+                  const SizedBox(height: 10),
+                    Button(
+                      name: "Sleep Mode (root)",
+                      nav: () => _openSleepMode(context),
+                      icon: Icons.mode_night,
+                      shadow: 0.4,
+                    ),
+                ],
+              ),
+            )
           ],
         ),
       ),

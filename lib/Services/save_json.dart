@@ -14,7 +14,26 @@ Future<bool> saveSchedule(Map<String, dynamic> data) async {
 
     return true; // sukses
   } catch (e) {
-    print("Gagal menyimpan jadwal: $e");
     return false; // gagal
   }
 }
+
+Future<bool> saveSleep(Map<String, dynamic> data) async {
+  try {
+    final directory = await getApplicationDocumentsDirectory();
+    final folder = Directory('${directory.path}/sleep');
+
+    if (!await folder.exists()) {
+      await folder.create(recursive: true);
+    }
+
+    final file = File('${folder.path}/sleep.json');
+    await file.writeAsString(jsonEncode(data));
+
+    return true;
+  } catch (e) {
+    print(e);
+    return false;
+  }
+}
+

@@ -11,6 +11,9 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -18,6 +21,8 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    // BLOK 'dependencies' YANG SEBELUMNYA ADA DI SINI, SUDAH DIPINDAHKAN KE LUAR 'android'
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -41,4 +46,11 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// PERBAIKAN 3: Blok 'dependencies' harus berada di top-level (di luar blok 'android')
+dependencies {
+    // PERBAIKAN 2: Gunakan "()" untuk pemanggilan fungsi dependensi di Kotlin
+    // Dependency ini akan tetap mengaktifkan desugaring
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
