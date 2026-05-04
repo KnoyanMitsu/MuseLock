@@ -1,10 +1,10 @@
-name: Build & Release Prism
+name: Muselock
 
 on:
   push:
-    tags:
-      - "v*" # Trigger release kalau ada tag v...
-  workflow_dispatch: # Trigger manual
+    branches:
+      - main # Langsung jalan otomatis setiap kali kamu nge-push ke branch main
+  workflow_dispatch: # Tetap bisa dijalankan secara manual lewat tombol di GitHub
 
 jobs:
   # 1. BUILD ANDROID
@@ -31,5 +31,3 @@ jobs:
         with:
           name: android-artifact
           path: app-release.apk
-
-  
